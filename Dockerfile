@@ -6,4 +6,4 @@ COPY . .
 
 RUN pip install --upgrade pip && pip install --upgrade pipenv && pipenv install
 
-ENTRYPOINT ["bash"]
+ENTRYPOINT ["tail", "-f", "/dev/null"]
