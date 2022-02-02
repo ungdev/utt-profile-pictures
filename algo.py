@@ -56,7 +56,7 @@ def main(argv):
                 for user in json.loads(requests.get(base_url + "/public/users", params=data).content)["data"]:
                     if user.get("studentId") and user.get("studentId", -1) > 0:
                         photo = utt_session.get(
-                            "https://local-sig.utt.fr/Pub/trombi/individu/mini/" + str(user["studentId"]) + ".jpg",
+                            "https://local-sig.utt.fr/Pub/trombi/individu/" + str(user["studentId"]) + ".jpg",
                             verify=False)
                         open(os.getenv("IMAGES_FOLDER") + "/" + str(user["studentId"]) + ".jpg", "wb").write(photo.content)
                     bar()
