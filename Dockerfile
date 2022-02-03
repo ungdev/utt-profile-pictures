@@ -6,6 +6,6 @@ USER 54545645
 
 COPY . .
 
-RUN pip install --upgrade pip && pip install --upgrade pipenv && pipenv install
+RUN pip install --user --upgrade pip && pip install --user --upgrade pipenv && pipenv install
 
 ENTRYPOINT ["tail", "-f", "/dev/null"]
