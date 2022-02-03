@@ -2,10 +2,12 @@ FROM python:3
 
 WORKDIR /usr/src/app
 
+RUN pip install --upgrade pip && pip install --upgrade pipenv
+
 USER 54545645
 
 COPY . .
 
-RUN pip install --user --upgrade pip && pip install --user --upgrade pipenv && pipenv install
+RUN pipenv install
 
 ENTRYPOINT ["tail", "-f", "/dev/null"]
