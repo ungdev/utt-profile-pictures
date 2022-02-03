@@ -50,11 +50,12 @@ def main(argv):
         page = json.loads(requests.get(base_url + "/public/users", params=data).content)
         total_pages = page["pagination"]["totalPages"]
         total_items = page["pagination"]["totalItems"]
-        with alive_bar(total_items) as bar:
+        with alive_bar(total_items, title='Importing profile pictures') as bar:
             for j in range(1, total_pages + 1):
                 data["page"] = j
                 for user in json.loads(requests.get(base_url + "/public/users", params=data).content)["data"]:
                     if user.get("studentId") and user.get("studentId", -1) > 0:
+                        bar.text = user.get("fullName")+" - "+str(user["studentId"])
                         photo = utt_session.get(
                             "https://local-sig.utt.fr/Pub/trombi/individu/" + str(user["studentId"]) + ".jpg",
                             verify=False)
